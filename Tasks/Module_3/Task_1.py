@@ -1,2 +1,1 @@
-a = str(input())
-print()
+print(input().count(' ') + 1)
