@@ -1,24 +1,17 @@
 import random
-a = random.randint(0, 100)
-print(a)
-b = random.randint(0, 100)
-print(b)
-s = a + b
-print(s)
 l = 3
-
 while True:
-    answer = input("Введите число: ")
+    a = random.randint(0, 100)
+    b = random.randint(0, 100)
+    print(f"{a} + {b} = ?")
+    answer = input("Введите ответ: ")
     if not answer.isdigit():
         print("Введите число!")
         continue
     answer = int(answer)
-    if answer != s:
+    if answer != a + b:
         l = l - 1
-        print("Неверный ответ")
-    elif l == 0:
+        print(f"Неверный ответ, осталось {l} жизни")
+    if l == 0:
         print("Проигрыш")
-        break
-    else:
-        print("Верный ответ")
-        break
+
