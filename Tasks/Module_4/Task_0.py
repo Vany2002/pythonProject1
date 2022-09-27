@@ -17,7 +17,7 @@ while True:
     else:
         l -= 1
         if l == 0:
-            print(f"Набрано очков: {o}")
+            print(f"Проигрыш, набрано очков: {o}")
             break
         else:
             print(f"Жизни: {l}, Ошибка")
