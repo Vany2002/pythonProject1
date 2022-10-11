@@ -1,43 +1,17 @@
 contacts = [
     {
-        "name": "John",
-        "phone": "123456"
-    },
-    {
-        "name": "Jane",
-        "phone": "564321"
-    },
-    {
-        "name": "Bob",
-        "phone": "+1234"
-    },
+        "name": "Ivan",
+        "phone": "+79031035012"
+    }
 ]
 
-FORMAT_STR = '{:<15} {:>12}'
-
-
 def list(contacts):
-    print(FORMAT_STR.format('Name', 'Phone'))
+    print(''.format('Name', 'Phone'))
     for contact in contacts:
-        print(FORMAT_STR.format(
+        print('Имя: {}, Номер: {}'.format(
             contact['name'],
             contact['phone']
         ))
-
-
-def find(contacts):
-    print("Введите имя контакта:")
-    name = input("> ")
-
-    for contact in contacts:
-        if contact['name'] == name:
-            print(FORMAT_STR.format(
-                contact['name'],
-                contact['phone']
-            ))
-            break
-    else:
-        print("Контакт не найден")
 
 
 def delete(contacts):
@@ -69,7 +43,6 @@ def add(contacts):
 print("Добро пожаловать в телефонную книгу.")
 print("""Введите команду:
 * list - чтобы посмотреть список контактов.
-* find - найти контакт по имени
 * add  - добавить контакт
 * del  - удаление контакта
 * edit - изменение контакта 
@@ -80,8 +53,6 @@ while True:
     command = input('> ')
     if command == 'list':
         list(contacts)
-    elif command == 'find':
-        find(contacts)
     elif command == 'add':
         add(contacts)
     elif command == 'del':
