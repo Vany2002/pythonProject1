@@ -13,18 +13,21 @@ def list(contacts):
             contact['phone']
         ))
 
-
 def delete(contacts):
-    print("Введите контакт: ")
+    print("Введите имя контакта: ")
     name = input('> ')
     for contact in contacts:
         if contact['name'] == name:
-            print("Вы хотите удалить контакт %s (yes/no)?: " % name)
-            name_del = input('> ')
-            if name_del == 'yes':
-                contacts.remove(contact)
-                print("Вы удалили контакт %s " % name)
+            contacts.remove(contact)
+            print("Вы удалили контакт %s " % name)
 
+def edit(contacts):
+    print("Введите имя контакта: ")
+    name = input('> ')
+    for contact in contacts:
+        if contact['name'] == name:
+            contacts.remove(contact)
+            print("Вы удалили контакт %s " % name)
 
 def add(contacts):
     print("Введите имя контакта:")
@@ -36,11 +39,8 @@ def add(contacts):
         'phone': phone
     }
     contacts.append(new_contact)
-
     print('Контакт сохранён')
 
-
-print("Добро пожаловать в телефонную книгу.")
 print("""Введите команду:
 * list - чтобы посмотреть список контактов.
 * add  - добавить контакт
