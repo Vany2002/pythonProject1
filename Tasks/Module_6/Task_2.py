@@ -1,6 +1,4 @@
-s = input()
-a = [int(s) for s in s.split()]
-for i in a:
-    if [i] < [i + 1]:
-        t = [i + 1]
-        print(t, end=' ')
+a = [int(s) for s in input().split()]
+for i in range(len(a) - 1):
+    if a[i] < a[i + 1]:
+        print(a[i + 1], end=' ')
