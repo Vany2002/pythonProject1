@@ -3,10 +3,10 @@ import random
 def con_game(words: list[str]) -> bool:
     if len(words) == 0:
         return False
-    choice = input('РҐРѕС‚РёС‚Рµ СЃС‹РіСЂР°С‚СЊ РµС‰Рµ? РґР°/РЅРµС‚ ')
-    if choice == 'РґР°':
+    choice = input('Хотите сыграть еще? да/нет ')
+    if choice == 'да':
         return True
-    if choice == 'РЅРµС‚':
+    if choice == 'нет':
         return False
     con_game(words)
 

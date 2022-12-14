@@ -1,12 +1,12 @@
 import re
 
 def choose_complexity() -> int:
-    choice = input('\nР’С‹Р±РµСЂРёС‚Рµ СЃР»РѕР¶РЅРѕСЃС‚СЊ: 1 - 3 Р¶РёР·РЅРё, 2 - 5 Р¶РёР·РЅРµР№, 3 - 7 Р¶РёР·РЅРµР№ ')
+    choice = input('\nВыберите сложность: 1 - 3 жизни, 2 - 5 жизней, 3 - 7 жизней ')
     return (2 * int(choice) + 1) if choice == '1' or choice == '2' or choice == '3' else choose_complexity()
 
 def check_input(word: str) -> str:
-    n = input('\nР’РІРµРґРёС‚Рµ Р±СѓРєРІСѓ РёР»Рё СЃР»РѕРІРѕ: ')
-    if re.findall(r'[Р°-СЏРђ-РЇ]', n) == []:
+    n = input('\nВведите букву или слово: ')
+    if re.findall(r'[а-яА-Я]', n) == []:
         check_input(word)
     return n
 
@@ -24,21 +24,21 @@ def play(word: str) -> int:
                 for i in range(len(word)):
                     if word[i] == n:
                         print_word[i] = n
-                print('Р’РµСЂРЅРѕ!')
+                print('Верно!')
                 print(*print_word)
                 if not print_word.__contains__('\u25A0'):
-                    print(f'Р’С‹ РІС‹РёРіСЂР°Р»Рё!')
+                    print(f'Вы выиграли!')
                     return max_live - live
             else:
                 live -= 1
-                print(f'РќРµРІРµСЂРЅРѕ!. РћСЃС‚Р°Р»РѕСЃСЊ {live} Р¶РёР·РЅРµР№')
+                print(f'Неверно!. Осталось {live} жизней')
                 print(*print_word)
         elif n == word:
-            print(f'Р’С‹ РІС‹РёРіСЂР°Р»Рё!')
+            print(f'Вы выиграли!')
             return max_live - live
         else:
             live -= 1
-            print(f'РќРµРІРµСЂРЅРѕ!. РћСЃС‚Р°Р»РѕСЃСЊ {live} Р¶РёР·РЅРµР№')
+            print(f'Неверно!. Осталось {live} жизней')
             print(*print_word)
-    print(f'Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё! РџСЂР°РІРёР»СЊРЅРѕРµ СЃР»РѕРІРѕ: {word}')
+    print(f'Вы проиграли! Правильное слово: {word}')
     return max_live - live
