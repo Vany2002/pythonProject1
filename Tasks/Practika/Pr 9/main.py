@@ -88,8 +88,6 @@ if __name__ == '__main__':
                 image_path = f"{path}\{files[num_file - 1]}"
                 image_file = Image.open(image_path)
                 image_file.save(f"{files[num_file - 1]}2.jpeg", quality=scale)
-
-        # Удаление файлов
         if act == 4:
             print(
                 """
@@ -100,13 +98,7 @@ if __name__ == '__main__':
                 """)
             key = int(input("Введите номер действия: "))
             substr = input("Введите подстроку: ")
-            # Список с расширениями
             lst = os.listdir(path)
-            # Список без расширений
-            # lst_names = []
-            # for i in lst:
-            #     name = i.split(".")[0]
-            #     lst_names.append(name)
             if key == 1:
                 for i in lst:
                     if i.startswith(substr):
