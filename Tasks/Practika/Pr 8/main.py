@@ -28,7 +28,7 @@ if __name__ == '__main__':
         word = trans.translate(k)
         translated_lst.append([k, word.lower(), v])
     #Создаем новый файл и записываем в него переводы
-    with open("transtaled.txt", "w+") as file:
+    with open("translated.txt", "w+") as file:
         for i in translated_lst:
             file.write(f"{i[0]} | {i[1]} | {i[2]} \n")
         file.close()
