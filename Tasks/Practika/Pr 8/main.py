@@ -1,6 +1,6 @@
 from translate import Translator
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     with open("dialog.txt", "r") as file:
         text = file.read()
         text = text.lower()
@@ -28,9 +28,8 @@ if __name__ == "__main__":
         word = trans.translate(k)
         translated_lst.append([k, word.lower(), v])
     #Создаем новый файл и записываем в него переводы
-    with open("translated.txt", "w+") as file:
+    with open("transtaled.txt", "w+") as file:
         for i in translated_lst:
             file.write(f"{i[0]} | {i[1]} | {i[2]} \n")
         file.close()
     print(translated_lst)
-
