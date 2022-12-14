@@ -9,7 +9,8 @@ def get_words(path: str= os.path.dirname(__file__) + '\\' + 'words.txt') -> list
     f.close()
     return words
 
-def new_record(record: int, file: str= os.path.dirname(__file__) + '\\' + 'record.txt') -> None:
+
+def new_record(record: int, file: str = os.path.dirname(__file__) + '\\' + 'record.txt') -> None:
     if not check_file(file):
         print('Ошибка!')
     f = open(file, 'r+', encoding='utf-8')
@@ -19,6 +20,7 @@ def new_record(record: int, file: str= os.path.dirname(__file__) + '\\' + 'recor
         f.seek(0)
         f.write(str(record))
     f.close()
+
 
 def check_file(filename: str) -> bool:
     error = True
