@@ -1,0 +1,3 @@
+import translation_and_formating
+
+print(translation_and_formating.translation_and_formating())
