@@ -69,4 +69,4 @@ def write_file(filename, translate_words: {}, sorted_words: {}):
 words = read_file('dialog.txt')
 sorted_words = list_words(words)
 transleted_words = translate(sorted_words)
-write_file('TranslatedWords.txt', transleted_words, sorted_words)
+write_file('translated.txt', transleted_words, sorted_words)
