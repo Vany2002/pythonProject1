@@ -19,6 +19,12 @@ info.append(temp)
 humidity = re.findall(r'(?:humidity":)([^,]+)', resp)
 info.append(humidity)
 
+speed = re.findall(r'(?:speed":)([^,]+)', resp)
+info.append(speed)
+
+pressure = re.findall(r'(?:pressure":)([^,]+)', resp)
+info.append(pressure)
+
 for i in info:
     print(i)
 
@@ -27,6 +33,6 @@ current_time = now.strftime("%H:%M:%S")
 print(f'{current_time} Запрос погоды в городе')
 print(f'Температура {temp}')
 
-f = open(text.txt, 'r+', encoding='utf-8')
+f = open('text.txt', 'r+', encoding='utf-8')
 for i in info:
 f.write(i))
