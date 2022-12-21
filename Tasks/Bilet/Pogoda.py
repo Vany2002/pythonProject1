@@ -25,7 +25,7 @@ info.append(speed)
 pressure = re.findall(r'(?:pressure":)([^,]+)', resp)
 info.append(pressure)
 
-name = re.findall(r'((?:name":)([^,]+))', resp)
+name = re.findall(r'(?:name":)([^,]+)', resp)
 info.append(name)
 
 for i in info:
