@@ -7,31 +7,34 @@ resp = urllib.request.urlopen(url)
 resp = resp.read().decode('utf-8')
 resp = resp[1:-1]
 
+info = []
+
 now = datetime.now()
 current_time = now.strftime("%H:%M:%S")
-
-town = re.findall(r'(?:name":)([^,]+)', resp)
+info.append(f'Time: {current_time}\n')
 
 temp = re.findall(r'(?:temp":)([^,]+)', resp)
+info.append(f'Temperature: {temp}\n')
 
 humidity = re.findall(r'(?:humidity":)([^,]+)', resp)
+info.append(f'Air humidity: {humidity}\n')
 
 speed = re.findall(r'(?:speed":)([^,]+)', resp)
+info.append(f'Wind speed: {speed}\n')
 
 pressure = re.findall(r'(?:pressure":)([^,]+)', resp)
+info.append(f'Atmosphere pressure: {pressure}\n')
 
+name = re.findall(r'(?:name":)([^,]+)', resp)
+info.append(f'city: {name}\n')
 
-print(f'время: {now} \n'
-    'город: {town} \n'
-    'температура: {temp} \n'
-    'влажность: {humidity} \n'
-    'скорость ветра: {speed} \n'
-    'давление: {pressure}')
-
+for i in info:
+    print(i)
 
 f = open('text.txt', 'r+', encoding='utf-8')
-f.write(f'[{now}] Запрос погоды в городе: {town}')
-f.write(f'Температура: {temp}')
-f.write(f'Влажность воздуха: {humidity}')
-f.write(f'Скорость ветра: {speed}')
-f.write(f'Атмосферное давление: {pressure}')
+f.write(f'Time: {now}\n')
+f.write(f'City: {name}\n')
+f.write(f'Temperature: {temp}\n')
+f.write(f'Air humidity: {humidity}\n')
+f.write(f'Wind speed: {speed}\n')
+f.write(f'Atmosphere pressure: {pressure}\n')
