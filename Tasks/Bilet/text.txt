@@ -1,6 +1,6 @@
-Time: 2022-12-21 16:57:44.828622
-City: ['"Москва"']
-Temperature: ['-3.93']
-Air humidity: ['96']
-Wind speed: ['3.25']
-Atmosphere pressure: ['1018']
+Time: 17:37:46
+City: Москва
+Temperature: -3.93
+Air humidity: 96
+Wind speed: 3.25
+Atmosphere pressure: 1018
