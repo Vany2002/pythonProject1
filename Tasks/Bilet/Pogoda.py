@@ -31,11 +31,6 @@ info.append(name)
 for i in info:
     print(i)
 
-now = datetime.now()
-current_time = now.strftime("%H:%M:%S")
-print(f'{current_time} Запрос погоды в городе')
-print(f'Температура {temp}')
-
 f = open('text.txt', 'r+', encoding='utf-8')
 for i in info:
     f.write(i)
