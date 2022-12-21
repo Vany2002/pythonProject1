@@ -25,6 +25,9 @@ info.append(speed)
 pressure = re.findall(r'(?:pressure":)([^,]+)', resp)
 info.append(pressure)
 
+name = re.findall(r'((?:name":)([^,]+))', resp)
+info.append(name)
+
 for i in info:
     print(i)
 
@@ -35,4 +38,4 @@ print(f'Температура {temp}')
 
 f = open('text.txt', 'r+', encoding='utf-8')
 for i in info:
-f.write(i))
+    f.write(i)
