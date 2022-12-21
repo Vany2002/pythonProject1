@@ -33,4 +33,5 @@ for i in info:
 
 f = open('text.txt', 'r+', encoding='utf-8')
 for i in info:
-    f.write(i)
+    f.write(str(i))
+print(f'city{name}')
