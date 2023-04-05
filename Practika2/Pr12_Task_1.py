@@ -1,4 +1,3 @@
-# coding=<encoding name>
 class Student:
     def __init__(self, name="Ivan", age=18, groupNumber="10A"):
         self.name = name
