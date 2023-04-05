@@ -40,7 +40,7 @@ Vitya.setGroupNumber("11A")
 Vitya.printInfo()
 print("")
 
-Gena = Student("Gena", 17)
+Gena = Student("Gena", 16)
 Gena.setGroupNumber("10A")
 Gena.printInfo()
 print("")

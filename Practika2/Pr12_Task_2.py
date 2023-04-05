@@ -15,7 +15,7 @@ class Math:
     def subtraction(self):
         return self.a - self.b
 
-math = Math(235, 23)
+math = Math(237, 23)
 print(math.addition())
 print(math.multiplication())
 print(math.division())
