@@ -2,7 +2,7 @@ import time
 
 def time_func(func):
     start = time.time()
-    result = func(1000000)
+    result = func(4574747)
     end = time.time()
     print(f" Function time {func.__name__}: {end - start}")
     return result
