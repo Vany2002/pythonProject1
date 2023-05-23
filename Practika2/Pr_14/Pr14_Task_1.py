@@ -1,21 +1,32 @@
 import time
 
-def time_func(func):
-    start = time.time()
-    result = func(4574747)
-    end = time.time()
-    print(f" Function time {func.__name__}: {end - start}")
-    return result
+def Time_func(func):
+    def wrapper(*args):
+        t = time.time()
+        func(*args)
+        dt = time.time() - t
+        print(f"Time: {dt}")
 
-@time_func
+    return wrapper
+
+@Time_func
 def append(n):
-    even_list = []
-    for i in range(n + 1):
+    num_list: list = []
+    for i in range(n):
         if i % 2 == 0:
-            even_list.append(i)
-    return even_list
+            num_list.append(i)
+    return num_list
 
-@time_func
+@Time_func
 def comprehension(n):
-    even_list = [i for i in range(n + 1) if i % 2 == 0]
-    return even_list
+    comprehension = [i for i in range(n + 1) if i % 2 == 0]
+    return comprehension
+
+
+n = int(input("Write the number: "))
+
+print("For append():")
+append(n)
+
+print("For comprehension():")
+comprehension(n)
