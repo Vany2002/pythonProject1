@@ -1,16 +1,16 @@
 class Board:
     def __init__(self):
         self.board = {
-                "1.1": " ", "1.2": " ", "1.3": " ",
-                "2.1": " ", "2.2": " ", "2.3": " ",
-                "3.1": " ", "3.2": " ", "3.3": " "}
+                "1": " ", "2": " ", "3": " ",
+                "4": " ", "5": " ", "6": " ",
+                "7": " ", "8": " ", "9": " "}
 
     def printBoard(self):
-        print(self.board["1.1"] + "|" + self.board["1.2"] + "|" + self.board["1.3"])
+        print(self.board["1"] + "|" + self.board["2"] + "|" + self.board["3"])
         print("-+-+-")
-        print(self.board["2.1"] + "|" + self.board["2.2"] + "|" + self.board["2.3"])
+        print(self.board["4"] + "|" + self.board["5"] + "|" + self.board["6"])
         print("-+-+-")
-        print(self.board["3.1"] + "|" + self.board["3.2"] + "|" + self.board["3.3"])
+        print(self.board["7"] + "|" + self.board["8"] + "|" + self.board["9"])
 
     def isValidMove(self, position):
         if self.board[position] == " ":
@@ -24,14 +24,14 @@ class Board:
         return None
 
     def isWinner(self, player):
-        if self.board["1.1"] == player.type and self.board["1.2"] == player.type and self.board["1.3"] == player.type or \
-        self.board["2.1"] == player.type and self.board["2.2"] == player.type and self.board["2.3"] == player.type or \
-        self.board["3.1"] == player.type and self.board["3.2"] == player.type and self.board["3.3"] == player.type or \
-        self.board["1.1"] == player.type and self.board["2.1"] == player.type and self.board["3.1"] == player.type or \
-        self.board["1.2"] == player.type and self.board["2.2"] == player.type and self.board["3.2"] == player.type or \
-        self.board["1.3"] == player.type and self.board["2.3"] == player.type and self.board["3.3"] == player.type or \
-        self.board["1.1"] == player.type and self.board["2.2"] == player.type and self.board["3.3"] == player.type or \
-        self.board["3.1"] == player.type and self.board["2.2"] == player.type and self.board["1.3"] == player.type:
+        if self.board["1"] == player.type and self.board["2"] == player.type and self.board["3"] == player.type or \
+        self.board["4"] == player.type and self.board["5"] == player.type and self.board["6"] == player.type or \
+        self.board["7"] == player.type and self.board["8"] == player.type and self.board["9"] == player.type or \
+        self.board["1"] == player.type and self.board["4"] == player.type and self.board["7"] == player.type or \
+        self.board["2"] == player.type and self.board["5"] == player.type and self.board["8"] == player.type or \
+        self.board["3"] == player.type and self.board["6"] == player.type and self.board["9"] == player.type or \
+        self.board["1"] == player.type and self.board["5"] == player.type and self.board["9"] == player.type or \
+        self.board["7"] == player.type and self.board["5"] == player.type and self.board["3"] == player.type:
             return True
         return False
 
@@ -52,9 +52,9 @@ class Game:
 
     def printValidEntries(self):
         print("""
-            1.1 | 1.2 | 1.3
-            2.1 | 2.2 | 2.3 
-            3.1 | 3.2 | 3.3 """)
+            1 | 2 | 3
+            4 | 5 | 6 
+            7 | 8 | 9 """)
 
     def printingBoard(self):
         self.board.printBoard()
