@@ -1,67 +1,78 @@
-from Practika2.Pr_15.Pr_15_Task_1 import Lecturer, Reviewer, Student
-
-course1 = 'Russian'
-course2 = 'Psychology'
-
-
-reviewer1 = Reviewer('Anton', 'Alex')
-reviewer2 = Reviewer('Lida', 'Viktor')
-
-lecturer1 = Lecturer('Marina', 'Dasha')
-lecturer2 = Lecturer('Dima', 'Kirill')
-
-student1 = Student('Misha', 'Ivan')
-student2 = Student('Peter', 'Bob')
-
-student1.add_course(course1)
-student2.add_course(course2)
-lecturer1.add_course(course1)
-lecturer2.add_course(course2)
+from Practika2.Pr_15.lecturer import Lecturer
+from Practika2.Pr_15.reviewer import Reviewer
+from Practika2.Pr_15.student import Student
+from Practika2.Pr_15.course import Course
+import statistics
+def Flatten(list):
+    return [item for sublist in list for item in sublist]
 
 
-student1.rate_lecture(lecturer1, course1, 4)
-student1.rate_lecture(lecturer2, course2, 5)
-student2.rate_lecture(lecturer1, course2, 4)
-student2.rate_lecture(lecturer2, course1, 3)
-
-student1.add_course(course2)
-student1.add_course(course1)
-student2.add_course(course2)
-student2.add_course(course1)
-student1.grades = {course2: [5, 4], course1: [4]}
-student2.grades = {course2: [4, 3], course1: [5]}
-
-print(reviewer1)
-print(reviewer2)
-
-print(lecturer1)
-print(lecturer2)
-
-print(student1)
-print(student2)
+def CalcAvgGrade(gradeables, courseId: int):
+    return statistics.mean(Flatten(map(lambda gradeable: gradeable(courseId), gradeables)))
 
 
-def avg_grade_hw(students_list, course_name):
-    grades = []
-    for student in students_list:
-        if course_name in student.grades:
-            grades.extend(student.grades[course_name])
-    if grades:
-        return sum(grades) / len(grades)
-    else:
-        return 0
+# Courses
+pythonCourse1 = Course(1, "Python")
+pythonCourse2 = Course(1, "Python")
+pythonCourse3 = Course(1, "Python")
+csharpCourse = Course(2, "C#")
+cppCourse = Course(3, "C++")
 
+# Lecturers
+lecturer1 = Lecturer('Some', 'Buddy')
+lecturer1.AddCourse(pythonCourse1)
+pythonCourse1.SetLecturer(lecturer1)
 
-print(avg_grade_hw([student1, student2], course2))
-print(avg_grade_hw([student1, student2], course1))
+lecturer2 = Lecturer('Ivan', 'Razin')
+lecturer2.AddCourse(pythonCourse2)
+pythonCourse2.SetLecturer(lecturer2)
 
+lecturer3 = Lecturer('Denis', 'Pavlov')
+lecturer3.AddCourse(pythonCourse3)
+pythonCourse3.SetLecturer(lecturer3)
 
-def avg_grade_lecturers(lecturers_list, course_name):
-    grades = []
-    for lecturer in lecturers_list:
-        if course_name in lecturer.courses:
-            grades.extend(lecturer.grades)
-    if len(grades) != 0:
-        return sum(grades) / len(grades)
-    else:
-        return 0
+# Students
+student1 = Student("Alex", "Petrov")
+
+student1.AddCourse(pythonCourse1)
+student1.AddCourse(pythonCourse2)
+student1.AddCourse(pythonCourse3)
+student1.AddCourse(csharpCourse)
+student1.AddCourse(cppCourse)
+
+student1.StartCourse(pythonCourse1.GetId())
+student1.StartCourse(csharpCourse.GetId())
+student1.FinishCourse(cppCourse.GetId())
+
+student2 = Student("Dima", "Ivanov")
+student2.AddCourse(pythonCourse1)
+student2.StartCourse(pythonCourse1.GetId())
+
+reviewer = Reviewer('Viktor', 'Kuznecov')
+reviewer + pythonCourse1
+reviewer.SetStudentGrade(student1, pythonCourse1.GetId(), 9)
+reviewer.SetStudentGrade(student2, pythonCourse1.GetId(), 5)
+reviewer + csharpCourse
+
+students = [student1, student2]
+
+print(f"Average homework grades for students within a course in {pythonCourse1.GetTitle()} {pythonCourse1.GetId()}: ",
+      CalcAvgGrade(students, pythonCourse1.GetId()))
+
+student1.RateLecturer(pythonCourse1.GetId(), 3)
+student2.RateLecturer(pythonCourse1.GetId(), 7)
+
+lecturers = [lecturer1, lecturer2, lecturer3]
+
+print(f"The average mark for the lectures of the lecturers within the framework of the course on {pythonCourse1.GetTitle()}: ",
+      CalcAvgGrade(lecturers, pythonCourse1.GetId()))
+
+print("\nThe first student is smarter than the second" if (student1 > student2)
+      else "\nThe second student is smarter than the first")
+
+print(f"\nReviewer:\n{reviewer}")
+print(f"\nLecturer1:\n{lecturer1}")
+print(f"\nStudent1:\n{student1}\n")
+
+print(f"Lecturer grades by courses: {lecturer1.GetGrades()}")
+print(f"Student grades by courses: {student1.GetGrades()}")
