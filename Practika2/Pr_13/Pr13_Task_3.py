@@ -1,97 +1,42 @@
 class Board:
     def __init__(self):
-        self.board = {
-                "1": " ", "2": " ", "3": " ",
-                "4": " ", "5": " ", "6": " ",
-                "7": " ", "8": " ", "9": " "}
+        self.cells = []
 
-    def printBoard(self):
-        print(self.board["1"] + "|" + self.board["2"] + "|" + self.board["3"])
-        print("-+-+-")
-        print(self.board["4"] + "|" + self.board["5"] + "|" + self.board["6"])
-        print("-+-+-")
-        print(self.board["7"] + "|" + self.board["8"] + "|" + self.board["9"])
+    def startGame(self):
+        print("Welcome to game!")
+        self.cells = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 
-    def isValidMove(self, position):
-        if self.board[position] == " ":
+    def checkWinners(self, player):
+        if (self.cells[0] == self.cells[1] == self.cells[2] and self.cells[0] == player) or (self.cells[0] == self.cells[3] == self.cells[6] and self.cells[0] == player) or (self.cells[0] == self.cells[4] == self.cells[8] and self.cells[0] == player) or (self.cells[2] == self.cells[5] == self.cells[8] and self.cells[2] == player) or (self.cells[2] == self.cells[4] == self.cells[6] and self.cells[2] == player) or (self.cells[6] == self.cells[7] == self.cells[8] and self.cells[6] == player):
+            print(f"{player} has won the game! \n", "Thanks for playing")
+            return False
+        else:
+            if self.cells.count(" ") == 0:
+                print("No winners! You both losers!")
             return True
-        return False
 
-    def changeBoard(self, position, type):
-        if self.isValidMove(position):
-            self.board[position] = type
-            return self.board
-        return None
-
-    def isWinner(self, player):
-        if self.board["1"] == player.type and self.board["2"] == player.type and self.board["3"] == player.type or \
-        self.board["4"] == player.type and self.board["5"] == player.type and self.board["6"] == player.type or \
-        self.board["7"] == player.type and self.board["8"] == player.type and self.board["9"] == player.type or \
-        self.board["1"] == player.type and self.board["4"] == player.type and self.board["7"] == player.type or \
-        self.board["2"] == player.type and self.board["5"] == player.type and self.board["8"] == player.type or \
-        self.board["3"] == player.type and self.board["6"] == player.type and self.board["9"] == player.type or \
-        self.board["1"] == player.type and self.board["5"] == player.type and self.board["9"] == player.type or \
-        self.board["7"] == player.type and self.board["5"] == player.type and self.board["3"] == player.type:
-            return True
-        return False
-
-
-class Player:
-    def __init__(self, type):
-        self.type = type
-
-    def __str__(self):
-        return "Player {}".format(self.type)
-
-
-class Game:
-    def __init__(self):
-        self.firstPlayer = Player("X")
-        self.secondPlayer = Player("O")
-        self.board = Board()
-
-    def printValidEntries(self):
-        print("""
-            1 | 2 | 3
-            4 | 5 | 6 
-            7 | 8 | 9 """)
-
-    def printingBoard(self):
-        self.board.printBoard()
-
-    def changeTurn(self, player):
-        if player == self.firstPlayer:
-            return self.secondPlayer
+    def turn(self, player):
+        print(f"What is {player}'s move? (1-9)\n")
+        n = int(input())
+        if 10 > n > 0:
+            cel = self.cells[n-1]
+            if cel != " ":
+                print("That cell is engaged!")
+                return False
+            else:
+                self.cells[n-1] = player
+                return True
         else:
-            return self.firstPlayer
+            print("Wrong cell's number!")
+            return False
 
-    def wonGame(self, player):
-        return self.board.isWinner(player)
-
-    def modifyBoard(self, position, type):
-        if self.board.changeBoard(position, type) is not None:
-            return self.board.changeBoard(position, type)
-        else:
-            position = input("Choose another position: ")
-            return self.board.changeBoard(position, type)
-
-
-def play():
-    game = Game()
-    game.printValidEntries()
-    player = game.firstPlayer
-    number = 9
-    while number > 0:
-        number -= 1
-        game.printingBoard()
-        position = input("{} next move: ".format(player))
-        game.modifyBoard(position, player.type)
-        if game.wonGame(player):
-            print("{} winner!".format(player))
-            break
-        else:
-            player = game.changeTurn(player)
-    if number == 0:
-        print("Game over!")
-
-play()
+    def drowBoard(self):
+        board = [
+            [self.cells[0], "|", self.cells[1], "|", self.cells[2]],
+            ["-", "+", "-", "+", "-"],
+            [self.cells[3], "|", self.cells[4], "|", self.cells[5]],
+            ["-", "+", "-", "+", "-"],
+            [self.cells[6], "|", self.cells[7], "|", self.cells[8]],
+        ]
+        for i in board:
+            print(i[0], i[1], i[2], i[3], i[4], sep="")
